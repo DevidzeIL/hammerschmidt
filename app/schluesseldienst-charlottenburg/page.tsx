@@ -1,6 +1,6 @@
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-import { CharlottenburgPageContent } from "@/components/charlottenburg-page-content"
+import { SiteFooterWrapper } from "@/components/site-footer-wrapper"
+import { SiteHeaderWrapper } from "@/components/site-header-wrapper"
+import { CharlottenburgPageContentWrapper } from "@/components/charlottenburg-page-content-wrapper"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 export default function CharlottenburgPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <CharlottenburgPageContent />
-      <SiteFooter />
+      <SiteHeaderWrapper />
+      <CharlottenburgPageContentWrapper />
+      <SiteFooterWrapper />
     </div>
   )
 }

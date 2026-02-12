@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'standalone',
+  // Убрано output: 'standalone' для Netlify
+  // Плагин @netlify/plugin-nextjs сам обрабатывает деплой
   images: {
     remotePatterns: [
       {

@@ -1,4 +1,5 @@
-import { SiteFooter } from "@/components/site-footer"
+import { SiteFooterWrapper } from "@/components/site-footer-wrapper"
+import { SiteHeaderWrapper } from "@/components/site-header-wrapper"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
 export default function DatenschutzPage() {
   return (
     <div className="flex min-h-screen flex-col">
+      <SiteHeaderWrapper />
       <main className="flex-1">
         <article className="container py-12 md:py-16 max-w-4xl">
           <h1 className="text-4xl font-bold mb-8">Datenschutzerklärung</h1>
@@ -152,7 +154,7 @@ export default function DatenschutzPage() {
           </div>
         </article>
       </main>
-      <SiteFooter />
+      <SiteFooterWrapper />
     </div>
   )
 }

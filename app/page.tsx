@@ -1,11 +1,6 @@
-import Link from "next/link"
-import { Button } from "@/components/ui/button"
-import { Phone, Mail } from "lucide-react"
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-import { GoogleMapsLink } from "@/components/google-maps-link"
-import { ReviewsSection } from "@/components/reviews-section"
-import { HomePageContent } from "@/components/home-page-content"
+import { SiteFooterWrapper } from "@/components/site-footer-wrapper"
+import { SiteHeaderWrapper } from "@/components/site-header-wrapper"
+import { HomePageContentWrapper } from "@/components/home-page-content-wrapper"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -23,9 +18,9 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <HomePageContent />
-      <SiteFooter />
+      <SiteHeaderWrapper />
+      <HomePageContentWrapper />
+      <SiteFooterWrapper />
     </div>
   )
 }

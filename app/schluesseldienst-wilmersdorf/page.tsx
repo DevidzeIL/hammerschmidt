@@ -1,6 +1,6 @@
-import { SiteFooter } from "@/components/site-footer"
-import { SiteHeader } from "@/components/site-header"
-import { WilmersdorfPageContent } from "@/components/wilmersdorf-page-content"
+import { SiteFooterWrapper } from "@/components/site-footer-wrapper"
+import { SiteHeaderWrapper } from "@/components/site-header-wrapper"
+import { WilmersdorfPageContentWrapper } from "@/components/wilmersdorf-page-content-wrapper"
 import { Metadata } from "next"
 
 export const metadata: Metadata = {
@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 export default function WilmersdorfPage() {
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
-      <WilmersdorfPageContent />
-      <SiteFooter />
+      <SiteHeaderWrapper />
+      <WilmersdorfPageContentWrapper />
+      <SiteFooterWrapper />
     </div>
   )
 }

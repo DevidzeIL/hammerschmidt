@@ -9,6 +9,4 @@
   NODE_VERSION = "20"
   PNPM_VERSION = "latest"
 
-# Для Next.js standalone output
-[functions]
-  node_bundler = "esbuild"
+# Плагин @netlify/plugin-nextjs автоматически обрабатывает Next.js деплой
