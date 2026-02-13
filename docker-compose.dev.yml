@@ -1,20 +1,18 @@
+# Локальная разработка: только Next.js без сборки образа
+# Запуск: pnpm dev (или docker compose -f docker-compose.dev.yml up)
 services:
-  db:
-    image: postgres:15-alpine
-    container_name: vetplast-db-dev
-    environment:
-      POSTGRES_USER: vetplast
-      POSTGRES_PASSWORD: vetplast123
-      POSTGRES_DB: vetplast
+  web:
+    image: node:20-alpine
+    container_name: hammerschmidt-dev
+    working_dir: /app
     volumes:
-      - postgres_data_dev:/var/lib/postgresql/data
+      - .:/app
+      - /app/node_modules  # анонимный том, чтобы не затирать node_modules хоста
     ports:
-      - "5432:5432"
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U vetplast"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-
-volumes:
-  postgres_data_dev:
+      - "3000:3000"
+    environment:
+      NODE_ENV: development
+      NEXT_PUBLIC_SITE_URL: http://localhost:3000
+    command: sh -c "corepack enable && corepack prepare pnpm@9 --activate && pnpm install && pnpm dev"
+    stdin_open: true
+    tty: true

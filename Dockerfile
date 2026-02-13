@@ -3,8 +3,8 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable pnpm (pin to v9 for lockfileVersion 6.0 compatibility)
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
 # Copy package files
 COPY package.json pnpm-lock.yaml* ./
@@ -14,14 +14,15 @@ RUN pnpm install --frozen-lockfile
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Enable pnpm
-RUN corepack enable && corepack prepare pnpm@latest --activate
+# Enable pnpm (same version as deps stage)
+RUN corepack enable && corepack prepare pnpm@9 --activate
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Build Next.js
+# Build Next.js (standalone for Docker)
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV NEXT_STANDALONE 1
 RUN pnpm build
 
 # Stage 3: Runner
@@ -38,6 +39,9 @@ RUN adduser --system --uid 1001 nextjs
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
+
+# Кэш оптимизации изображений: nextjs должен иметь право писать в .next/cache
+RUN mkdir -p .next/cache && chown -R nextjs:nodejs /app
 
 USER nextjs
 
